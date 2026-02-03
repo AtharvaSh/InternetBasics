@@ -1,29 +1,166 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Welcome to Your Content Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truth Test for Suhani</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* Fun blue/purple gradient */
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            max-width: 90%;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .gif-container img {
+            width: 250px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            border: 2px solid #333;
+        }
+
+        #yesBtn {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            box-shadow: 4px 4px 0px #333;
+            transition: transform 0.1s;
+        }
+
+        #yesBtn:active {
+            transform: translate(4px, 4px);
+            box-shadow: none;
+        }
+
+        #noBtn {
+            background-color: #f44336; /* Red */
+            color: white;
+            box-shadow: 4px 4px 0px #333;
+            position: relative; 
+        }
+
+        /* Success Message Styling */
+        .success-message {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .success-message h2 {
+            color: #4CAF50;
+            font-size: 2.5rem;
+        }
+        
+        .success-message p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+    </style>
 </head>
-<body style="font-family: Arial, sans-serif; background-color: #f2f2f2; text-align: center; margin: 0; padding: 0;">
+<body>
 
-    <header style="background-color: #333; color: white; padding: 10px;">
-        <h1> Content </h1>
-    </header>
+    <div class="container">
+        <div id="question-section">
+            <div class="gif-container">
+                <img src="https://media.giphy.com/media/l0HlRnAWXxn0MhKLK/giphy.gif" alt="Cool Guy">
+            </div>
+            
+            <h1>Suhani, do you admit that I am the best brother in the whole world? 😌</h1>
+            
+            <div class="btn-group">
+                <button id="yesBtn">Yes, obviously</button>
+                <button id="noBtn">No</button>
+            </div>
+        </div>
 
-   
+        <div id="success-message" class="success-message">
+            <div class="gif-container">
+                <img src="https://media.giphy.com/media/lbwsW6U4wVwCk/giphy.gif" alt="Dancing">
+            </div>
+            <h2>HAHA! I KNEW IT! 😎</h2>
+            <p>Screenshot taken. No take-backs, Suhani!</p>
+        </div>
+    </div>
 
-    <main style="padding: 20px;">
-        <section style="background-color: white; border-radius: 5px; padding: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); text-align: left;">
-          <a href="Internetbasics.html"> <h2> <img src="IB.jpg"> </h2></a>
-            <p>Explore the fundamental concepts of the Internet and its history. Learn how it has revolutionized communication and access to information.</p>
-        </section>
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const questionSection = document.getElementById('question-section');
+        const successMessage = document.getElementById('success-message');
 
-        <section style="background-color: white; border-radius: 5px; padding: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); margin-top: 20px; text-align: left;">
-         <a href="Chapter2.html">   <h2> <img src="Internet.jpg"> </h2></a>
-            <p>Discover the latest trends in web technology and internet services. Stay updated with the ever-evolving digital landscape.</p>
-        </section>
-    </main>
+        // Logic to make the "No" button run away
+        function moveButton() {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
 
-    
+            // Calculate random positions
+            const newX = Math.random() * (windowWidth - btnWidth - 50); 
+            const newY = Math.random() * (windowHeight - btnHeight - 50);
+
+            // Apply the new position
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top = newY + 'px';
+        }
+
+        // Desktop hover
+        noBtn.addEventListener('mouseover', moveButton);
+        
+        // Mobile touch
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+
+        // Logic for clicking "Yes"
+        yesBtn.addEventListener('click', () => {
+            questionSection.style.display = 'none';
+            successMessage.style.display = 'flex';
+            document.body.style.background = "linear-gradient(135deg, #f6d365 0%, #fda085 100%)";
+        });
+    </script>
 </body>
 </html>
